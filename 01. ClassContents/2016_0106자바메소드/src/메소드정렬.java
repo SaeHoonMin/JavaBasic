@@ -5,6 +5,8 @@ public class 메소드정렬 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] arr= new int[10];
+	
+			
 		
 		System.out.print("정렬 전 : ");
 		for(int i=0;i<arr.length;i++)
@@ -83,6 +85,8 @@ public class 메소드정렬 {
 	static void bubbleSort(int [] arrp)
 	{
 		int [] arr = copyArray(arrp);
+		
+
 		
 		for(int i=0;i<arr.length-1;i++)
 		{
