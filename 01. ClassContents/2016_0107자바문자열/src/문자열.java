@@ -62,7 +62,5 @@ public class 문자열 {
 		if(str.equalsIgnoreCase(str2))
 			System.out.println("str 과 str2는 같다 (문자열)");
 		
-		
-		
 	}
 }
