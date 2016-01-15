@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class VendingMachine {
-	List <Beverage> beverages;
-	int currentMoney;
+	private List <Beverage> beverages;
+	private int currentMoney;
 	
 	
 	public VendingMachine()
@@ -21,9 +22,11 @@ public class VendingMachine {
 	public void showMenu()
 	{
 		System.out.println("==========다음과 같은 음료들이 있습니다.==========");
-		for(int i=0; i<beverages.size(); i++)
+		Iterator<Beverage> itr = beverages.iterator();
+		for(int i=0;itr.hasNext();i++)
 		{
-			System.out.println(i+1+" : "+beverages.get(i).toString());
+			Beverage b = itr.next();
+			System.out.println(i+1+" : "+b.toString());
 		}
 		System.out.println("======================================");
 	}
@@ -63,10 +66,5 @@ public class VendingMachine {
 		int a = currentMoney;
 		currentMoney=0;
 		return a;
-	}
-	//잔돈표시
-	public void showCurrentMoney()
-	{
-		System.out.println(currentMoney);
 	}
 }

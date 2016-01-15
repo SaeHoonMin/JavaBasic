@@ -15,8 +15,8 @@ public class Beverage {
 		return type;
 	}
 
-
 	public String getName() {
+		
 		return name;
 	}
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Seny/02.Sist/01.JavaBasic/01. ClassContents/02. OOP/2016_0115자바미니프로젝트폼/JTattoo-1.6.11.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

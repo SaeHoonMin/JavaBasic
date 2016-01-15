@@ -65,6 +65,7 @@ public class Human {
 			}
 		}
 		System.out.println();
+		target.showMenu();
 		while(true)
 		{
 			System.out.println("구매할 음료 번호를 선택하세요.");
@@ -74,9 +75,12 @@ public class Human {
 				break;
 			
 			if(	target.buyBeverage(input) );
+			{
+				System.out.println();
 				target.showMenu();
+			}
 		}
-		System.out.println("\n 음료 구매가 완룐되었습니다. 거스름돈을 반환받습니다.");
+		System.out.println("\n 음료 구매가 완료되었습니다. 거스름돈을 반환받습니다.");
 		refundMoney(target);
 		System.out.println("거스름돈 받고 남은 돈 : "+ money);
 	}
