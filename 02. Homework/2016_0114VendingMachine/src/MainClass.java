@@ -15,8 +15,6 @@ public class MainClass {
 		System.out.println("\n당신의 이름은 " +human.getName()+"이며, 가진 돈은 "+human.getMoney()+"입니다.");
 		System.out.println("자판기에 접근합니다.");
 		System.out.println("음료 구매를 시작합니다...");
-		human.buyBeverage(vMachine);
-		
+		human.buyBeverage(vMachine);	
 	}
-
 }

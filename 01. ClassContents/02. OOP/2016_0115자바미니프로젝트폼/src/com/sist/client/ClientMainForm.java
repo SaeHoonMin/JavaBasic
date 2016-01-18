@@ -22,6 +22,7 @@ public class ClientMainForm extends JFrame implements ActionListener{
 		login.b2.addActionListener(this);
 		wr.b6.addActionListener(this);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setResizable(false);
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
