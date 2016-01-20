@@ -14,7 +14,10 @@ public class WaitRoom extends JPanel{
 		String[] col1={"방이름","공개/비공개","인원"};
 		String[][] row1=new String[0][3];
 		model1=new DefaultTableModel(row1,col1);
+		
+		
 		table1=new JTable(model1);
+		
 		JScrollPane js1=new JScrollPane(table1);
 		
 		String[] col2={"ID","대화명","성별","위치"};

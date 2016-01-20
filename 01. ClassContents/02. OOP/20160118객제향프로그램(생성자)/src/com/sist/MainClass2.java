@@ -7,6 +7,7 @@ public class MainClass2 {
     {
     	//오라클 연결시에 드라이버 설정
     	try{
+    		//메모리 할당함
     		Class.forName("oracle.jdbc.driver.OracleDriver");
     	}catch (Exception e)
     	{
