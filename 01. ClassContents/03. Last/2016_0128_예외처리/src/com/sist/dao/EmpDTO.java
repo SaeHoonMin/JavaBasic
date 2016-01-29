@@ -1,21 +1,15 @@
 package com.sist.dao;
-
-import java.util.Date;
-
+import java.util.*;
 public class EmpDTO {
-	private int empno;			//사번
-	private String ename;		//이름
-	private String job;			//직위
-	private int mgr;			//사수번호
-	private Date hireDate;		//입사일
-	private int sal;			//급여
-	private int comm;			//성과급
-	private int deptno;			//부서번호
-	
-	
-	
-
-	//읽기, 쓰기
+    private int empno; // 사번
+    private String ename; // 이름
+    private String job; // 직위
+    private int mgr; // 사수번호
+    private Date hiredate; // 입사일
+    private int sal; // 급여
+    private int comm; // 성과급
+    private int deptno; // 부서번호
+   // 읽기 , 쓰기
 	public int getEmpno() {
 		return empno;
 	}
@@ -40,11 +34,11 @@ public class EmpDTO {
 	public void setMgr(int mgr) {
 		this.mgr = mgr;
 	}
-	public Date getHireDate() {
-		return hireDate;
+	public Date getHiredate() {
+		return hiredate;
 	}
-	public void setHireDate(Date hireDate) {
-		this.hireDate = hireDate;
+	public void setHiredate(Date hiredate) {
+		this.hiredate = hiredate;
 	}
 	public int getSal() {
 		return sal;
@@ -64,6 +58,5 @@ public class EmpDTO {
 	public void setDeptno(int deptno) {
 		this.deptno = deptno;
 	}
-	
-	
+	   
 }
