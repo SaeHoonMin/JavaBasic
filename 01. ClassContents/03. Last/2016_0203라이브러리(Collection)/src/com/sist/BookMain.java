@@ -27,7 +27,7 @@ import java.util.*;
 import javax.swing.table.*;
 // 인포트 자바엑스점스윙점
 public class BookMain extends JFrame
-implements MouseListener, ItemListener
+implements MouseListener,ItemListener
 {
     JTable table;
     DefaultTableModel model;
@@ -57,7 +57,7 @@ implements MouseListener, ItemListener
     	la3=new JLabel("저자:");
     	la4=new JLabel("출판사:");
     	la5=new JLabel("가격:");
-    	b = new JButton("전체 목록");
+    	
     	la6=new JLabel("Search");
     	box=new JComboBox();
     	box.addItem("위키북스");
@@ -66,6 +66,7 @@ implements MouseListener, ItemListener
     	box.addItem("대림출판사");
     	tf=new JTextField(20);
     	tf.setEditable(false);
+    	b=new JButton("전체목록");
     	//<input type=text readonly>
     	JPanel p=new JPanel();
     	p.add(la6);
@@ -138,10 +139,9 @@ implements MouseListener, ItemListener
 				la5.setText("가격:"+book.getPrice());
 			}
 		}
-		if(e.getSource()==b)
+		else if(e.getSource()==b)
 		{
 			getData();
-			tf.setText("");
 		}
 	}
 	@Override
@@ -169,19 +169,18 @@ implements MouseListener, ItemListener
 		// TODO Auto-generated method stub
 		if(e.getSource()==box)
 		{
-			getFindData(box.getSelectedItem().toString());
-			
+			getFindData();
 		}
 	}
-
-	public void getFindData(String pub)
+	public void getFindData()
     {
-		tf.setText(pub);
     	for(int i=model.getRowCount()-1;i>=0;i--)
     	{
     		model.removeRow(i);
     	}
-    	ArrayList<Book> list=bm.findBookByPub(pub);
+    	String pub=box.getSelectedItem().toString();
+    	ArrayList<Book> list=bm.bookFindData(pub);
+    	tf.setText(pub);
     	for(Book book:list)
     	{
     		String[] data={
@@ -192,6 +191,7 @@ implements MouseListener, ItemListener
     		model.addRow(data);
     	}
     }
+
 }
 
 

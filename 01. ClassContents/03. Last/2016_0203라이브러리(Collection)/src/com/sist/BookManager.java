@@ -33,18 +33,18 @@ public class BookManager {
 	  }
 	  return book;
    }
-   public ArrayList<Book> findBookByPub(String pub)
+   public ArrayList<Book> bookFindData(String pub)
    {
-	   ArrayList<Book> bList = new ArrayList<Book>();
-	   
-	   for(Book b : list )
-	   {
-		   if(pub.equals(b.getPublisher()))
-			   bList.add(b);
-		   
-	   }
-	   
-	   return bList;
+	    ArrayList<Book> list=
+	    		new ArrayList<Book>();
+	    for(Book book:BookManager.list)
+	    {
+	    	if(pub.equals(book.getPublisher()))
+	    	{
+	    		list.add(book);
+	    	}
+	    }
+	    return list;
    }
 }
 

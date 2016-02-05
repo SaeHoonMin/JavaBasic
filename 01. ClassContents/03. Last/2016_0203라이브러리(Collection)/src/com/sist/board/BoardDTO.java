@@ -1,7 +1,8 @@
 package com.sist.board;
+import java.io.Serializable;
 import java.util.*;
 // content.jsp?no=1 admin_board
-public class BoardDTO {
+public class BoardDTO implements Serializable{
     private int no;
     private String name;
     private String subject;

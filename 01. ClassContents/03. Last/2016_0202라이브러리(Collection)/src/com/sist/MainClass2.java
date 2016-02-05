@@ -36,8 +36,8 @@ public class MainClass2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-        ArrayList<Sawon> list=
-        	new ArrayList<Sawon>();
+        List<Sawon> list=
+        	new LinkedList<Sawon>();
         list.add(new Sawon(1,"홍길동","개발부"));
         list.add(new Sawon(2,"심청이","자재부"));
         list.add(new Sawon(3,"춘향이","총무부"));
@@ -69,7 +69,25 @@ public class MainClass2 {
         			+s.getName()+" "
         			+s.getDept());
         }
-        
+        System.out.println("=====권고 사직====");
+        Random r=new Random();
+        list.remove(r.nextInt(list.size()-1));
+        System.out.println("======직원목록======");
+        for(Sawon s:list)
+        {
+        	System.out.println(s.getSabun()+" "
+        			+s.getName()+" "
+        			+s.getDept());
+        }
+        System.out.println("==== 개명을 했을 경우 =====");
+        list.set(r.nextInt(list.size()-1),new Sawon(r.nextInt(list.size()-1),"춘향이(개명)","총무부") );
+        System.out.println("======직원목록======");
+        for(Sawon s:list)
+        {
+        	System.out.println(s.getSabun()+" "
+        			+s.getName()+" "
+        			+s.getDept());
+        }
 	}
 
 }
