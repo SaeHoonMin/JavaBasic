@@ -1,8 +1,12 @@
 package com.sist.common;
 
 public class Function {
+	
    public static final int LOGIN=100;
    public static final int MYLOG=110;// 로그인 => 대기실
+   public static final int NOID=120;
+   public static final int NOPWD=130;
+   public static final int MULTIID=140;
    
    // 방
    public static final int MAKEROOM=200;
