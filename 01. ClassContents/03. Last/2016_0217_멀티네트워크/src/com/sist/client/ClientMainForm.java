@@ -9,6 +9,20 @@ import java.awt.event.*;
 import java.util.StringTokenizer;
 import java.net.*;
 import java.io.*;
+/*
+ * {
+ *   case 1:
+ *   {
+ *     String id;
+ *   }
+ *     break;
+ *   case 2:
+ *   {
+ *     String id
+ *     }
+ *     break;
+ *  }
+ */
 public class ClientMainForm extends JFrame 
 implements ActionListener,Runnable,MouseListener
 {
@@ -39,11 +53,16 @@ implements ActionListener,Runnable,MouseListener
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	    setResizable(false);
 	    wr.tf.addActionListener(this);
+	    wr.table1.addMouseListener(this);
 	    wr.table2.addMouseListener(this);
 	    wr.b6.addActionListener(this);
 	    wr.b1.addActionListener(this);
 	    mr.b1.addActionListener(this);
 	    mr.b2.addActionListener(this);
+	    cr.b1.addActionListener(this);
+	    cr.b2.addActionListener(this);
+	    cr.b3.addActionListener(this);
+	    cr.tf.addActionListener(this);
     }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -170,6 +189,26 @@ implements ActionListener,Runnable,MouseListener
 		{
 			mr.setVisible(false);
 		}
+		else if(e.getSource()==cr.b1)
+		{
+			
+		}
+		else if(e.getSource()==cr.b2)
+		{
+			
+		}
+		else if(e.getSource()==cr.b3)
+		{
+			try
+			{
+				out.write((Function.ROOMOUT+"|"
+						+myRoom+"\n").getBytes());
+			}catch(Exception ex){}
+		}
+		else if(e.getSource()==cr.tf)
+		{
+			
+		}
 	}
 	@Override
 	public void run() {
@@ -270,9 +309,223 @@ implements ActionListener,Runnable,MouseListener
     				break;
     				case Function.MYROOMIN:
     				{
+    					String id=st.nextToken();
+    					String name=st.nextToken();
+    					String sex=st.nextToken();
+    					String avata=st.nextToken();
+    					myRoom=st.nextToken();
+    					String rb=st.nextToken();
     					card.show(getContentPane(), "CR");
+    					String[] data={id,name,sex};
+    					cr.model.addRow(data);
+    					for(int i=0;i<6;i++)
+    					{
+    						if(!cr.sw[i])
+    						{
+    							cr.sw[i]=true;
+    							cr.pan[i].setLayout(new BorderLayout());
+    							cr.pan[i].removeAll();
+    							cr.pan[i].add("Center",
+    									new JLabel(new ImageIcon("c:\\image\\"
+    							        +(sex.equals("남자")?"m":"w")+avata+".gif")));
+    							cr.idtf[i].setText(name);
+    							if(id.equals(rb))
+    							{
+    								cr.idtf[i].setForeground(Color.red);
+    							}
+    							cr.pan[i].validate();
+    							break;
+    						}
+    					}
+    					
+    					if(id.equals(rb))
+    					{
+    						cr.b1.setEnabled(true);
+    						cr.b2.setEnabled(true);
+    					}
+    					else
+    					{
+    						cr.b1.setEnabled(false);
+    						cr.b2.setEnabled(false);
+    					}
+    					
     				}
     				break;
+    				case Function.POSCHANGE:
+    				{
+    					String id=st.nextToken();
+    					String pos=st.nextToken();
+    					for(int i=0;i<wr.model2.getRowCount();i++)
+    					{
+    						String temp=wr.model2.getValueAt(i,0).toString();
+    						if(id.equals(temp))
+    						{
+    							wr.model2.setValueAt(pos, i, 3);
+    							break;
+    						}
+    					}
+    				}
+    				break;
+    				case Function.ROOMIN:
+    				{
+    					String id=st.nextToken();
+    					String name=st.nextToken();
+    					String sex=st.nextToken();
+    					String avata=st.nextToken();
+    					String rb=st.nextToken();
+    					card.show(getContentPane(), "CR");
+    					String[] data={id,name,sex};
+    					cr.model.addRow(data);
+    					for(int i=0;i<6;i++)
+    					{
+    						if(!cr.sw[i])
+    						{
+    							cr.sw[i]=true;
+    							cr.pan[i].setLayout(new BorderLayout());
+    							cr.pan[i].removeAll();
+    							cr.pan[i].add("Center",
+    									new JLabel(new ImageIcon("c:\\image\\"
+    							        +(sex.equals("남자")?"m":"w")+avata+".gif")));
+    							cr.idtf[i].setText(name);
+    							if(id.equals(rb))
+    							{
+    								cr.idtf[i].setForeground(Color.red);
+    							}
+    							cr.pan[i].validate();
+    							break;
+    						}
+    					}
+    				}
+    				break;
+    				case Function.ROOMCHAT:
+    				{
+    					cr.ta.append(st.nextToken()+"\n");
+    				
+    				}
+    				break;
+    				case Function.WAITUPDATE:
+    				{
+    					/*
+    					 *  +room.roomName+"|"
+	    									+room.current+"|"
+	    									+room.inwon+"|"
+	    									+id+"|"
+	    									+pos
+    					 */
+    					String rn=st.nextToken();
+    					String rc=st.nextToken();
+    					String ri=st.nextToken();
+    					String id=st.nextToken();
+    					String pos=st.nextToken();
+    					for(int i=0;i<wr.model1.getRowCount();i++)
+    					{
+    						String temp=wr.model1.getValueAt(i, 0).toString();
+    						if(rn.equals(temp))
+    						{
+    							if(Integer.parseInt(rc)<1)
+    							{
+    								wr.model1.removeRow(i);
+    							}
+    							else
+    							{
+    								wr.model1.setValueAt(rc+"/"+ri, i, 2);
+    							}
+    							break;
+    						}
+    					}
+    					for(int i=0;i<wr.model2.getRowCount();i++)
+    					{
+    						String temp=wr.model2.getValueAt(i,0).toString();
+    						if(id.equals(temp))
+    						{
+    							wr.model2.setValueAt(pos, i, 3);
+    							break;
+    						}
+    					}
+    				}
+    				break;
+    				case Function.BANGCHANGE:
+    				{
+    					String bj=st.nextToken();
+    					String name=st.nextToken();
+    					JOptionPane.showMessageDialog(this,
+    							"방장이 "+bj+"님으로 변경되었습니다");
+    					for(int i=0;i<6;i++)
+    					{
+    						String n=cr.idtf[i].getText();
+    						if(n.equals(name))
+    						{
+    							cr.idtf[i].setForeground(Color.red);
+    						}
+    						else
+    						{
+    							cr.idtf[i].setForeground(Color.black);
+    						}
+    					}
+    					if(bj.equals(getTitle()))
+    					{
+    						cr.b1.setEnabled(true);
+    						cr.b2.setEnabled(true);
+    						
+    					}
+    					else
+    					{
+    						cr.b1.setEnabled(false);
+    						cr.b2.setEnabled(false);
+    					}
+    				}
+    				break;
+    				case Function.ROOMOUT:
+    				{
+    					String id=st.nextToken();
+    					String name=st.nextToken();
+    					for(int i=0;i<6;i++)
+    					{
+    						String temp=cr.idtf[i].getText();
+    						if(temp.equals(name))
+    						{
+	    						cr.sw[i]=false;
+	    						cr.idtf[i].setText("");
+	    						cr.pan[i].removeAll();
+	    						cr.pan[i].setLayout(new BorderLayout());
+	    						cr.pan[i].add("Center",new JLabel(
+	    								new ImageIcon("c:\\image\\def.png")));
+	    						cr.pan[i].validate();
+	    						break;
+    						}
+    					}
+    					
+    					for(int i=cr.model.getRowCount()-1;i>=0;i--)
+    					{
+    						String ii=cr.model.getValueAt(i, 0).toString();
+    						if(ii.equals(id))
+    						{
+    						  cr.model.removeRow(i);
+    						  break;
+    						}
+    					}
+    				}
+    				break;
+    				case Function.MYROOMOUT:
+    				{
+    					for(int i=0;i<6;i++)
+    					{
+    						cr.sw[i]=false;
+    						cr.idtf[i].setText("");
+    						cr.pan[i].removeAll();
+    						cr.pan[i].setLayout(new BorderLayout());
+    						cr.pan[i].add("Center",new JLabel(
+    								new ImageIcon("c:\\image\\def.png")));
+    						cr.pan[i].validate();
+    					}
+    					cr.ta.setText("");
+    					cr.tf.setText("");
+    					for(int i=cr.model.getRowCount()-1;i>=0;i--)
+    					{
+    						cr.model.removeRow(i);
+    					}
+    					card.show(getContentPane(), "WR");
+    				}
 				}
 				
 			}
@@ -294,6 +547,30 @@ implements ActionListener,Runnable,MouseListener
 			{
 				wr.b3.setEnabled(true);
 				wr.b4.setEnabled(true);
+			}
+		}
+		else if(e.getSource()==wr.table1)
+		{
+			if(e.getClickCount()==2)
+			{
+				int row=wr.table1.getSelectedRow();
+				String rn=wr.model1.getValueAt(row, 0).toString();
+				String rs=wr.model1.getValueAt(row, 1).toString();
+				String ri=wr.model1.getValueAt(row, 2).toString();
+				StringTokenizer st=
+						new StringTokenizer(ri, "/");
+				// 1/6  => 6/6
+				if(Integer.parseInt(st.nextToken())==
+						Integer.parseInt(st.nextToken()))
+				{
+					JOptionPane.showMessageDialog(this,
+							"더이상 입장이 불가능 합니다");
+					return;
+				}
+				try
+				{
+					out.write((Function.MYROOMIN+"|"+rn+"\n").getBytes());
+				}catch(Exception ex){}
 			}
 		}
 	}

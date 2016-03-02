@@ -7,6 +7,7 @@ public class ChatRoom extends JPanel{
     JPanel[] pan=new JPanel[6];
     // 클래스의 배열 선언 ==> null
     JTextField[] idtf=new JTextField[6];
+    boolean[] sw=new boolean[6];
     JTextArea ta;
     JTextField tf;
     JComboBox box;
@@ -21,8 +22,11 @@ public class ChatRoom extends JPanel{
     		pan[i]=new JPanel();
     		pan[i].setBackground(Color.black);
     		idtf[i]=new JTextField();
+    		idtf[i].setEditable(false);
+    		idtf[i].setHorizontalAlignment(JLabel.CENTER);
     	}
     	ta=new JTextArea();
+    	ta.setEnabled(false);
     	JScrollPane js1=new JScrollPane(ta);
     	tf=new JTextField();
     	box=new JComboBox();
